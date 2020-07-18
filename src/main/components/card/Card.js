@@ -15,85 +15,6 @@ import Link from "next/link";
 // a swipe-to dismiss action.
 const dismissDistance = 150;
 
-// export const Card = memo(
-//   ({
-//      isSelected,
-//      id,
-//      title,
-//      category,
-//      pointOfInterest,
-//      backgroundColor,
-//     onClick,
-//     onDismiss
-//    }) => {
-//     const router = useRouter();
-//     const y = useMotionValue(0);
-//     const zIndex = useMotionValue(isSelected ? 2 : 0);
-//
-//     // Maintain the visual border radius when we perform the layoutTransition by inverting its scaleX/Y
-//     const inverted = useInvertedBorderRadius(20);
-//
-//     // We'll use the opened card element to calculate the scroll constraints
-//     const cardRef = useRef(null);
-//     const constraints = useScrollConstraints(cardRef, isSelected);
-//
-//     function checkSwipeToDismiss() {
-//       onDismiss();
-//       // y.get() > dismissDistance && router.push("/main");
-//       // router.push("/");
-//     }
-//
-//     function checkZIndex(latest) {
-//       if (isSelected) {
-//         zIndex.set(2);
-//       } else if (!isSelected && latest.scaleX < 1.01) {
-//         zIndex.set(0);
-//       }
-//     }
-//
-//     // When this card is selected, attach a wheel event listener
-//     const containerRef = useRef(null);
-//     // useWheelScroll(
-//     //   containerRef,
-//     //   y,
-//     //   constraints,
-//     //   checkSwipeToDismiss,
-//     //   isSelected
-//     // );
-//
-//     return (
-//       <li ref={containerRef} className={`card`} onClick={onClick}>
-//         <Overlay isSelected={isSelected} onDismiss={onDismiss}/>
-//         <div className={`card-content-container ${isSelected && "open"}`}>
-//           <motion.div
-//             ref={cardRef}
-//             className="card-content"
-//             style={{...inverted, zIndex, y}}
-//             layoutTransition={isSelected ? openSpring : closeSpring}
-//             drag={isSelected ? "y" : false}
-//             dragConstraints={constraints}
-//             onClick={checkSwipeToDismiss}
-//             onUpdate={checkZIndex}
-//           >
-//             <Image
-//               id={id}
-//               isSelected={isSelected}
-//               pointOfInterest={pointOfInterest}
-//               backgroundColor={backgroundColor}
-//             />
-//             <Title title={title} category={category} isSelected={isSelected}/>
-//             <ContentPlaceholder/>
-//           </motion.div>
-//         </div>
-//         {!isSelected && (<Link href="/main" >
-//           <a className={`card-open-link`}></a>
-//         </Link>)}
-//       </li>
-//     );
-//   },
-//   (prev, next) => prev.isSelected !== next.isSelected
-// );
-
 export const Card = ({
                        isSelected,
                        id,
@@ -142,7 +63,6 @@ export const Card = ({
 
   return (
     <li ref={containerRef} className={`card`} onClick={isSelected ? onDismiss : onClick}>
-      {/*<Overlay isSelected={isSelected}/>*/}
       <div className={`card-content-container ${isSelected && "open"}`}>
         <motion.div
           ref={cardRef}
@@ -155,7 +75,7 @@ export const Card = ({
           onUpdate={checkZIndex}
         >
           <Image
-            id={id}
+            id={ Math.floor(Math.random() * (4)) + 1}
             isSelected={isSelected}
             pointOfInterest={pointOfInterest}
             backgroundColor={backgroundColor}
@@ -166,9 +86,6 @@ export const Card = ({
           />
         </motion.div>
       </div>
-      {/*{!isSelected && (<Link href="/main" >*/}
-      {/*  <a className={`card-open-link`}></a>*/}
-      {/*</Link>)}*/}
     </li>
   );
 };

@@ -17,7 +17,7 @@ export const Image = ({
     >
       <motion.img
         className="card-image"
-        src="/static/images/illust1.jpg"
+        src={`/static/images/illust${id}.jpg`}
         alt=""
         initial={false}
         animate={
