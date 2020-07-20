@@ -128,7 +128,7 @@ export default function MainContainer(props) {
             testData?.map((item, index) => (
               <div
                 onClick={() => showItem(item)}
-                className={`desktop:w-1/4 mobile:w-full laptop:w-1/3 tablet:w-1/2 mb-8 flex justify-center tablet:${index % 2 === 0 ? "pr-1" : "pl-1"}`}
+                className={`desktop:w-1/4 mobile:w-full laptop:w-1/3 tablet:w-1/2 mb-8 flex justify-center tablet:${index % 2 === 0 ? "pr-2" : "pl-2"}`}
                 key={index.toString()}
               >
                 <CardLayout
@@ -144,16 +144,7 @@ export default function MainContainer(props) {
           </p>
         </div>
         <div className="card-list desktop:px-8 laptop:px-6 tablet:px-4 mobile:px-4">
-          {cardData.map((card, index) => (
-              <Card
-                detailData={detailData}
-                key={index.toString()}
-                isSelected={card.id === selectedCardID}
-                onClick={() => selectCard(card.id)}
-                onDismiss={() => selectCard(null)}
-                {...card}
-              />
-          ))}
+
         </div>
       </div>
     </motion.div>
